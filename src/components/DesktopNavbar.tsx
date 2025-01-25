@@ -10,7 +10,6 @@ async function DesktopNavbar() {
 
   return (
     <div className="hidden md:flex items-center space-x-4">
-      <ModeToggle />
 
       <Button variant="ghost" className="flex items-center gap-2" asChild>
         <Link href="/">
@@ -18,7 +17,6 @@ async function DesktopNavbar() {
           <span className="hidden lg:inline">Home</span>
         </Link>
       </Button>
-
       {user ? (
         <>
           <Button variant="ghost" className="flex items-center gap-2" asChild>
@@ -44,6 +42,7 @@ async function DesktopNavbar() {
           <Button variant="default">Sign In</Button>
         </SignInButton>
       )}
+      <ModeToggle />
     </div>
   );
 }
