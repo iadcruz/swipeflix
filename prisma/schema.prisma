@@ -87,6 +87,7 @@ model Notification {
   type NotificationType
   read Boolean @default(false)
   createdAt DateTime @default(now())
+  movie String?
 
   user User @relation("userNotifications", fields: [userId], references: [id], onDelete: Cascade)
   creator User @relation("notificationCreator", fields: [creatorId], references: [id], onDelete: Cascade)
@@ -96,4 +97,5 @@ model Notification {
 
 enum NotificationType {
   FOLLOW
+  LIKE
 }

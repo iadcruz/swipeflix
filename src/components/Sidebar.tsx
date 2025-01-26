@@ -51,24 +51,6 @@ async function Sidebar() {
                   <p className="text-xs text-muted-foreground">Followers</p>
                 </div>
               </div>
-              <Separator className="my-4" />
-            </div>
-
-            <div className="w-full space-y-2 text-sm">
-              <div className="flex items-center text-muted-foreground">
-                <MapPinIcon className="w-4 h-4 mr-2" />
-                {user.location || "No location"}
-              </div>
-              <div className="flex items-center text-muted-foreground">
-                <LinkIcon className="w-4 h-4 mr-2 shrink-0" />
-                {user.website ? (
-                  <a href={`${user.website}`} className="hover:underline truncate" target="_blank">
-                    {user.website}
-                  </a>
-                ) : (
-                  "No website"
-                )}
-              </div>
             </div>
           </div>
         </CardContent>
