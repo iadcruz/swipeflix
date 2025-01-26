@@ -11,7 +11,7 @@ export async function syncUser() {
             return;
         }
         const existingUser = await prisma.user.findUnique({
-            where:{
+            where: {
                 clerkId:userId
             }
         })

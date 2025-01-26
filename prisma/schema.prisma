@@ -25,6 +25,7 @@ model User {
   website String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  hasLikes Boolean @default(false)
 
   currentlyWatching String?
 
@@ -39,21 +40,20 @@ model User {
 }
 
 model Movie {
-  id String @id @default(cuid())
-  title String
+  title String @id
+  id Int
   desc String
   image String
   releaseDate String
   rating String
-
-  likes Like[]
-  laters Later[]
 }
 
 model Like {
   id String @id @default(cuid())
   authorId String
-  movie Movie @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  movie String
+  movieId Int @default(0)
+  path String
 
   @@unique([authorId])
   User User[] @relation("likes")
@@ -62,7 +62,9 @@ model Like {
 model Later {
   id String @id @default(cuid())
   authorId String
-  movie Movie @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  movie String
+  movieId Int @default(0)
+  path String
 
   User User[] @relation("later")
 }

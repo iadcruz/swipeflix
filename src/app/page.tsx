@@ -1,7 +1,9 @@
-export default function Home() {
+import MovieCard from "@/components/MovieCard";
+
+export default async function Home() {
   return (
-    <div className="m-4">
-      <h1>Home page</h1>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
+      <MovieCard />
     </div>
-  );
+  )
 }
