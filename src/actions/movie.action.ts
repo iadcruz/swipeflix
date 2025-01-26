@@ -39,7 +39,6 @@ export async function getSimilar() {
 
     return similarMovies.length > 0 ? similarMovies : await getRandom();
   } catch (error) {
-    console.error(error);
     return [];
   }
 }
@@ -62,7 +61,6 @@ export async function getUserLikes() {
 
 export async function addLike(movie: string, movieId: number, poster_path: string) {
   try {
-    console.log("here")
     const { userId } = await auth();
     if (!userId) return false;
 
@@ -77,6 +75,28 @@ export async function addLike(movie: string, movieId: number, poster_path: strin
       },
     });
 
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+export async function addLater(movie: string, movieId: number, poster_path: string) {
+  try {
+    const { userId } = await auth();
+    if (!userId) return false;
+
+    const later = await prisma.later.create({
+      data: { authorId: userId, movie, movieId, path: poster_path },
+    });
+    await prisma.user.update({
+      where: { clerkId: userId },
+      data: {
+        hasLikes: true,
+        watchLater: { connect: { id: later.id } },
+      },
+    });
     return true;
   } catch (error) {
     console.error(error);

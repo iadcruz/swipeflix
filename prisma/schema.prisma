@@ -55,7 +55,6 @@ model Like {
   movieId Int @default(0)
   path String
 
-  @@unique([authorId])
   User User[] @relation("likes")
 }
 

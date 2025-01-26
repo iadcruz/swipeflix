@@ -1,11 +1,11 @@
 "use client";
 
-import { addLike, getRandom, getSimilar, getUserLikes } from "@/actions/movie.action";
+import { addLater, addLike, getRandom, getSimilar, getUserLikes } from "@/actions/movie.action";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Star, ThumbsDown, ThumbsUp } from "lucide-react";
+import { Star, ThumbsDown, ThumbsUp, Heart } from "lucide-react";
 import { Separator } from "./ui/separator";
 
 export default function Main() {
@@ -60,6 +60,13 @@ export default function Main() {
     await handleGenerateNext();
   };
 
+  const laterAndHandle = async () => {
+    if (movie) {
+      await addLater(movie.title, movie.id, movie.poster_path);
+    }
+    await handleGenerateNext();
+  }
+
   if (!movie) {
     return <p>Loading...</p>;
   }
@@ -102,9 +109,12 @@ export default function Main() {
           </div>
         </div>
         <Separator className="my-4" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 pb-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 pb-3">
           <Button onClick={handleGenerateNext} className="col-span-1 text-gray-600 bg-inherit">
             <ThumbsDown />
+          </Button>
+          <Button onClick={laterAndHandle} className="col-span-1 text-gray-600 bg-inherit">
+            <Heart />
           </Button>
           <Button onClick={likeAndHandle} className="col-span-1 text-gray-600 bg-inherit">
             <ThumbsUp />
