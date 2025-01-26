@@ -79,27 +79,25 @@ function NotificationsPage() {
                       <AvatarImage src={notification.creator.image ?? "/avatar.png"} />
                     </Avatar>
                     <div className="flex-1 space-y-1">
-                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2">
                         {getNotificationIcon(notification.type)}
                         <span>
-                          <span className="font-medium">
+                            <span className="font-medium">
                             {notification.creator.name ?? notification.creator.username}
-                          </span>{" "}
-                          {notification.type === "FOLLOW"
+                            </span>{" "}
+                            {notification.type === "FOLLOW"
                             ? "started following you"
                             : "added a movie to Watch Later"}
                         </span>
-                      </div>
-  
-                      {notification.movie &&
-                        (notification.type == "LIKE") && (
-                          <div className="pl-6 space-y-2">
-                            <div className="text-sm text-muted-foreground rounded-md p-2 bg-muted/30 mt-2">
-                              <p>{notification.movie}</p>
-                            </div> 
-                          </div>
+                        </div>
+
+                        {(notification.type == "LIKE") && (
+                            <div className="pl-6 space-y-2">
+                                <div className="text-sm text-muted-foreground rounded-md p-2 bg-muted/30 mt-2">
+                                    <p>{notification.movie}</p>
+                                </div> 
+                            </div>
                         )}
-  
                       <p className="text-sm text-muted-foreground pl-6">
                         {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
                       </p>

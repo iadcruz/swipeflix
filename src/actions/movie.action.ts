@@ -3,6 +3,7 @@
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
+import { getDbUserId } from "./user.action";
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 
@@ -90,6 +91,7 @@ export async function addLater(movie: string, movieId: number, poster_path: stri
     const later = await prisma.later.create({
       data: { authorId: userId, movie, movieId, path: poster_path },
     });
+
     await prisma.user.update({
       where: { clerkId: userId },
       data: {
@@ -97,6 +99,32 @@ export async function addLater(movie: string, movieId: number, poster_path: stri
         watchLater: { connect: { id: later.id } },
       },
     });
+
+    let currId = await getDbUserId();
+    const followers = await prisma.follows.findMany({
+      where: {
+        followingId:currId
+      },
+      include: {
+        follower: {
+          select: {
+            id: true
+          }
+        }
+      }
+    })
+
+    for (let follower of followers) {
+      await prisma.notification.create({
+        data:{
+          type:"LIKE",
+          userId: follower.followerId,
+          creatorId: currId,
+          movie: movie
+        }
+      })
+    }
+
     return true;
   } catch (error) {
     console.error(error);
