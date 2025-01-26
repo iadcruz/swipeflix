@@ -8,16 +8,17 @@ import Image from "next/image";
 import { Star, ThumbsDown, ThumbsUp, Heart } from "lucide-react";
 import { Separator } from "./ui/separator";
 
+type Movie = {
+  id: number;
+  title: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
+};
+
 export default function Main() {
-  type Movie = {
-    id: number;
-    title: string;
-    overview: string;
-    backdrop_path: string;
-    poster_path: string;
-    release_date: string;
-    vote_average: number;
-  };
 
   const [movies, setMovies] = useState<Movie[]>([]);
   const [movie, setMovie] = useState<Movie | null>(null);
@@ -93,7 +94,7 @@ export default function Main() {
               </div>
               <div className="text-center p-3">
                 <p className="italic text-xs text-muted-foreground">
-                  Released: {movie.release_date}
+                  Released: {movie.release_date ? movie.release_date : "No release date available"}
                 </p>
               </div>
             </div>
@@ -101,10 +102,10 @@ export default function Main() {
 
           <div className="lg:block lg:col-span-4">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">{movie.title}</CardTitle>
+              <CardTitle className="text-xl font-semibold">{movie.title ? movie.title : "Title"}</CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
-              <p className="text-xs text-muted-foreground">{movie.overview}</p>
+              <p className="text-xs text-muted-foreground">{movie.overview ? movie.overview : "No description available"}</p>
             </CardContent>
           </div>
         </div>

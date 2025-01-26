@@ -131,3 +131,19 @@ export async function addLater(movie: string, movieId: number, poster_path: stri
     return false;
   }
 }
+
+export default async function getLaters() {
+  try {
+    const { userId } = await auth();
+    if (!userId) return null;
+
+    const laters = await prisma.later.findMany({
+      where: { authorId: userId },
+    });
+
+    return laters;
+
+  } catch(error) {
+    console.log("Error fetching watch list", error);
+  }
+}
