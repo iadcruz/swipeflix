@@ -1,6 +1,6 @@
 ## What is SwipeFlix?
 
-SwipeFlix is an app that provides personalized movie and tv-show recommendations based on your previous swipe history, with the ability to follow other users and be notified of the shows and movies they add to their watch list. On the 'Home' screen, you should see random suggestions to start, with the option to dislike, heart, or like the movie/show; liking/hearting something results in similar recommendations in the future, with hearting adding the specific movie/show to a watchlist visible under 'Profile'. The 'Notifications' page is for letting you know that you've gained a follower or that someone you follow has added something to their watchlist.
+SwipeFlix is an app that provides personalized movie and tv-show recommendations based on your previous swipe history, with the ability to follow other users and be notified of the shows and movies they add to their watch list. On the 'Home' screen, you should see random suggestions to start, with the option to dislike, heart, or like the movie/show; liking/hearting something results in similar recommendations in the future, with hearting adds the specific movie/show to a watchlist visible under 'Profile'. The 'Notifications' page is for letting you know that you've gained a follower or that someone you follow has added something to their watchlist.
 
 ## Features
 
