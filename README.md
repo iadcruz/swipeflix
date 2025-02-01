@@ -10,10 +10,6 @@ SwipeFlix is an app that provides personalized movie and tv-show recommendations
 4. [TMDb API](https://developer.themoviedb.org/reference/intro/getting-started) calls for movie/tv show data
 5. App Deployment through Vercel
 
-## Time Spent
-
-~8 hours over the course of a few days
-
 ## Running the Project
 
 To view the deployed app, simply visit:
